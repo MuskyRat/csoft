@@ -1,5 +1,5 @@
 {
-  "homepage": "http://MuskyRat.github.io/csoft",
+  "homepage": "https://muskyrat.github.io/csoft",
   "name": "csoft",
   "version": "0.1.0",
   "private": true,
@@ -22,7 +22,7 @@
     "web-vitals": "^2.1.2"
   },
   "scripts": {
-    "predeploy": "yarn run build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
