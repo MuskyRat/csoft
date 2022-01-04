@@ -1,0 +1,55 @@
+.rightMenuIcon {
+  position: absolute;
+  top: 34px;
+  right: 36px;
+  cursor: pointer;
+}
+
+.triangle {
+  border: 1px solid #494949;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 75px;
+  right: 42px;
+  transform: rotate(45deg);
+  z-index: 2;
+  background: #FFFFFF;
+}
+
+.line {
+  border-bottom: 1px solid #494949;
+  width: 207px;
+  position: absolute;
+  top: 80px;
+  right: 35px;
+  z-index: 1;
+}
+
+.rightMenuWindowWrapper {
+  position: absolute;
+  top: 81px;
+  right: 35px;
+  border: 1px solid #494949;
+  border-top: none;
+  background: #FFFFFF;
+  z-index: 3;
+  display: flex;
+  width: 207px;
+  flex-wrap: wrap;
+}
+
+.rightMenuItem {
+  padding: 10px;
+  cursor: pointer;
+}
+.rightMenuItem:hover {
+  background: #EFEFEF;
+}
+
+.icon {
+  width: 21px;
+  height: 21px;
+}
+
+/*# sourceMappingURL=RightMenu.module.css.map */

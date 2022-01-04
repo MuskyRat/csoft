@@ -1,0 +1,63 @@
+$borderColor: #494949
+$backgroundColor: #FFFFFF
+
+.leftMenuIcon
+  position: absolute
+  top: 31px
+  left: 36px
+  cursor: pointer
+  z-index: 4
+
+.triangle
+  border: 1px solid $borderColor
+  width: 16px
+  height: 16px
+  position: absolute
+  top: 75px
+  left: 42px
+  transform: rotate(45deg)
+  z-index: 5
+  background: $backgroundColor
+
+.line
+  border-bottom: 1px solid $borderColor
+  width: 176px
+  position: absolute
+  top: 80px
+  left: 35px
+  z-index: 4
+
+.leftMenuWindowWrapper
+  position: absolute
+  top: 81px
+  left: 35px
+  border: 1px solid $borderColor
+  border-top: none
+  background: $backgroundColor
+  z-index: 6
+
+.leftMenuItem
+  display: flex
+  padding: 5px 0 5px 0
+  cursor: pointer
+  &:hover
+    background: #EFEFEF
+
+.iconContainer
+  padding-left: 15px
+  display: flex
+  align-items: center
+
+.icon
+  width: 23px
+  height: 23px
+
+.iconName
+  padding-left: 10px
+  font-weight: 400
+  font-size: 12px
+  line-height: 0
+  display: flex
+  align-items: center
+  width: 136px
+  color: #000000

@@ -1,0 +1,30 @@
+.wrapper {
+  border: 1px solid #494949;
+  position: absolute;
+  z-index: 3;
+  background: #FFFFFF;
+}
+
+.contextMenuItem {
+  display: flex;
+  cursor: pointer;
+}
+.contextMenuItem:hover {
+  background: #EFEFEF;
+}
+
+.iconContainer {
+  height: 33px;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+}
+
+.iconName {
+  width: 89px;
+  display: flex;
+  align-items: center;
+  line-height: 0;
+}
+
+/*# sourceMappingURL=ContextMenu.module.css.map */

@@ -1,0 +1,8 @@
+.workfieldWrapper {
+  width: calc(100vw - 262px);
+  height: 100%;
+  position: relative;
+  padding: 0;
+}
+
+/*# sourceMappingURL=Workfield.module.css.map */

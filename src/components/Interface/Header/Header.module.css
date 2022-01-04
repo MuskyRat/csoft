@@ -1,0 +1,83 @@
+.wrapper {
+  width: 100vw;
+}
+
+.documentsContainer {
+  height: 35px;
+  background: #494949;
+  display: flex;
+  width: 100%;
+}
+
+.logoContainer {
+  height: 100%;
+  width: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #494949;
+}
+
+.openDocuments {
+  display: flex;
+  width: calc(100vw - 35px);
+  height: 100%;
+  background: #494949;
+}
+
+.openDocument {
+  height: 100%;
+  padding: 0 12px 0 10px;
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+  size: 12px;
+  background: #494949;
+  border-left: 1px solid #696969;
+  border-right: 1px solid #696969;
+  cursor: default;
+  color: #FFFFFF;
+}
+
+.closeIconContainer {
+  margin-left: 7px;
+  cursor: pointer;
+}
+
+.active {
+  font-weight: 700;
+  background: #FFFFFF;
+  color: #000000;
+}
+
+.userPic {
+  height: 36px;
+  background: #494949;
+  border-top: #696969 1px solid;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 18px;
+}
+
+.userSvgContainer {
+  position: relative;
+  line-height: 0;
+  border-radius: 12.5px;
+  cursor: pointer;
+}
+
+.circleSvg {
+  pointer-events: none;
+}
+
+.man {
+  position: absolute;
+  top: 57%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/*# sourceMappingURL=Header.module.css.map */

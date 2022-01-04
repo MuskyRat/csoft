@@ -1,0 +1,78 @@
+$headerBackgroundClr: #494949
+$logoContainerHeight: 35px
+$activeOpenDocumentBackgroundColor: #FFFFFF
+$openDocumentFontColor: #FFFFFF
+$activeOpenDocumentFontColor: #000000
+$borderColor: #696969
+
+.wrapper
+  width: 100vw
+
+.documentsContainer
+  height: 35px
+  background: $headerBackgroundClr
+  display: flex
+  width: 100%
+
+.logoContainer
+  height: 100%
+  width: $logoContainerHeight
+  display: flex
+  justify-content: center
+  align-items: center
+  background: $headerBackgroundClr
+
+.openDocuments
+  display: flex
+  width: calc(100vw - #{$logoContainerHeight})
+  height: 100%
+  background: $headerBackgroundClr
+
+.openDocument
+  height: 100%
+  padding: 0 12px 0 10px
+  display: flex
+  align-items: center
+  font-weight: 400
+  size: 12px
+  background: $headerBackgroundClr
+  border-left: 1px solid $borderColor
+  border-right: 1px solid $borderColor
+  cursor: default
+  color: $openDocumentFontColor
+
+.closeIconContainer
+  margin-left: 7px
+  cursor: pointer
+
+.active
+  font-weight: 700
+  background: $activeOpenDocumentBackgroundColor
+  color: $activeOpenDocumentFontColor
+
+.userPic
+  height: 36px
+  background: $headerBackgroundClr
+  border-top: $borderColor 1px solid
+  display: flex
+  align-items: center
+  justify-content: flex-end
+  padding-right: 18px
+
+.userSvgContainer
+  position: relative
+  line-height: 0
+  border-radius: 12.5px
+  cursor: pointer
+
+
+.circleSvg
+  pointer-events: none
+
+.man
+  position: absolute
+  top: 57%
+  left: 50%
+  transform: translate(-50%, -50%)
+  z-index: 2
+  pointer-events: none
