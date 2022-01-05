@@ -10,6 +10,7 @@ import svg7 from '../../../../../assets/RightMenu/7.svg';
 import svg8 from '../../../../../assets/RightMenu/8.svg';
 import svg9 from '../../../../../assets/RightMenu/9.svg';
 import svg10 from '../../../../../assets/RightMenu/10.svg';
+import {subscribeWFtoRM} from "../Workfield";
 
 // Тип для элемента массива иконок
 
@@ -52,6 +53,27 @@ const RightMenu: React.FC = React.memo(() => {
 
     };
 
+    // Обработчик события клик
+
+    const clickHandler = (e: React.MouseEvent) => {
+
+        setOpenHandler();
+        e.preventDefault()
+
+    };
+
+    // Функция для закрытия окна меню
+
+    const closeHandler = () => {
+
+        setOpenHandler();
+
+    };
+
+    // Подписка компоненты Workfield на локальный стейт и closeHandler
+
+    subscribeWFtoRM(open, closeHandler);
+
     // Функция для установления локального стейта mainIcon в значение выбранной во всплавающем меню иконки, если выбранная иконка отлична от главной иконки
 
     const setMainIconHandler = (menuIcon: string) => {
@@ -63,7 +85,7 @@ const RightMenu: React.FC = React.memo(() => {
     return (
 
         <>
-            <img src={mainIcon} alt="rightMenuIcon" className={style.rightMenuIcon} onClick={setOpenHandler} />
+            <img src={mainIcon} alt="rightMenuIcon" className={style.rightMenuIcon} onClick={clickHandler} />
             {open && <RightMenuWindow setOpenHandler={setOpenHandler} setMainIconHandler={setMainIconHandler} iconsArray={iconsArray} />}
         </>
 
@@ -91,10 +113,11 @@ const RightMenuWindow: React.FC<PropsType> = React.memo(({setOpenHandler, setMai
 
         // Обработчки события клик
 
-        const clickHandler = () => {
+        const clickHandler = (e: React.MouseEvent) => {
 
             setOpenHandler();
             setMainIconHandler(i.icon);
+            e.preventDefault();
 
         };
 

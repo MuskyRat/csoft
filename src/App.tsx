@@ -1,10 +1,10 @@
 import React from 'react';
-import './App.css';
+import style from './App.module.css';
 import Interface from "./components/Interface/Interface";
 
 function App() {
   return (
-    <div className="App">
+    <div className={style.app}>
         <Interface />
     </div>
   );

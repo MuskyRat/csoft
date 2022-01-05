@@ -9,6 +9,7 @@ import shadedWithEdges from '../../../../../assets/LeftMenu/shaded-with-edges.sv
 import sketchy from '../../../../../assets/LeftMenu/sketchy.svg';
 import xRay from '../../../../../assets/LeftMenu/x_ray.svg';
 import {subscribeLAM} from "../LeftAnimatedMenu/LeftAnimatedMenu";
+import {subscribeWFtoLM} from "../Workfield";
 
 // Тип для элемента массива иконок
 
@@ -70,6 +71,15 @@ const LeftMenu: React.FC = React.memo(() => {
 
     };
 
+    // Обрботчик события клик
+
+    const clickHandler = (e: React.MouseEvent) => {
+
+        setOpenHandler();
+        e.preventDefault();
+
+    };
+
     // Функция для закрытия окна меню
 
     const closeHandler = () => {
@@ -77,6 +87,10 @@ const LeftMenu: React.FC = React.memo(() => {
         if(open) setOpen(!open);
 
     };
+
+    // Подписка компоненты Workfield на локальный стейт и closeHandler
+
+    subscribeWFtoLM(open, closeHandler);
 
     // Подписка компоненты LeftAnimatedMenu на функцию closeHandler
 
@@ -93,7 +107,7 @@ const LeftMenu: React.FC = React.memo(() => {
     return (
 
         <>
-            <img src={mainIcon} alt="leftMenuIcon" className={style.leftMenuIcon} onClick={setOpenHandler} />
+            <img src={mainIcon} alt="leftMenuIcon" className={style.leftMenuIcon} onClick={clickHandler} />
             {open && <LeftMenuWindow setOpenHandler={setOpenHandler} setMainIconHandler={setMainIconHandler} iconsArray={iconsArray} />}
         </>
 
@@ -121,10 +135,11 @@ const LeftMenuWindow: React.FC<PropsType> = React.memo(({setOpenHandler, setMain
 
         // Обработчки события клик
 
-        const clickHandler = () => {
+        const clickHandler = (e: React.MouseEvent) => {
 
             setOpenHandler();
             setMainIconHandler(i.icon);
+            e.preventDefault();
 
         };
 
