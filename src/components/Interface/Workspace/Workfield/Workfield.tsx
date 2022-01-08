@@ -6,27 +6,17 @@ import RightMenu from "./RightMenu/RightMenu";
 import GraphicField from "./GraphicField/GraphicField";
 import LeftAnimatedMenu from "./LeftAnimatedMenu/LeftAnimatedMenu";
 
-// Подписчик на локальный стейт компоненты LeftMenu
-
-let leftMenuStateSubscriber: boolean | null = null;
-
 // Подписчик на функцию CloseHandler компоненты LeftMenu
 
 let leftMenuCloseHandlerSubscriber: (() => void) | null = null;
 
 // Функция для подписки
 
-export const subscribeWFtoLM = (state: boolean, callback: () => void) => {
-
-    leftMenuStateSubscriber = state;
+export const subscribeWFtoLM = (callback: () => void) => {
 
     leftMenuCloseHandlerSubscriber = callback;
 
 };
-
-// Подписчик на локальный стейт компоненты RightMenu
-
-let rightMenuStateSubscriber: boolean | null = null;
 
 // Подписчик на функцию CloseHandler компоненты RightMenu
 
@@ -34,9 +24,7 @@ let rightMenuCloseHandlerSubscriber: (() => void) | null = null;
 
 // Функция для подписки
 
-export const subscribeWFtoRM = (state: boolean, callback: () => void) => {
-
-    rightMenuStateSubscriber = state;
+export const subscribeWFtoRM = (callback: () => void) => {
 
     rightMenuCloseHandlerSubscriber = callback;
 
@@ -56,9 +44,9 @@ const Workfield: React.FC = React.memo(() => {
 
         } else {
 
-            if(leftMenuStateSubscriber && leftMenuStateSubscriber) leftMenuCloseHandlerSubscriber && leftMenuCloseHandlerSubscriber();
+            leftMenuCloseHandlerSubscriber && leftMenuCloseHandlerSubscriber();
 
-            if(rightMenuStateSubscriber && rightMenuStateSubscriber) rightMenuCloseHandlerSubscriber && rightMenuCloseHandlerSubscriber();
+            rightMenuCloseHandlerSubscriber && rightMenuCloseHandlerSubscriber();
 
         }
 

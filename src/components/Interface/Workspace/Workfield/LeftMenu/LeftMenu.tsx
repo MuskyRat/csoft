@@ -88,9 +88,9 @@ const LeftMenu: React.FC = React.memo(() => {
 
     };
 
-    // Подписка компоненты Workfield на локальный стейт и closeHandler
+    // Подписка компоненты Workfield на closeHandler
 
-    subscribeWFtoLM(open, closeHandler);
+    subscribeWFtoLM(closeHandler);
 
     // Подписка компоненты LeftAnimatedMenu на функцию closeHandler
 

@@ -66,13 +66,13 @@ const RightMenu: React.FC = React.memo(() => {
 
     const closeHandler = () => {
 
-        setOpenHandler();
+        if(open) setOpen(!open);
 
     };
 
-    // Подписка компоненты Workfield на локальный стейт и closeHandler
+    // Подписка компоненты Workfield на closeHandler
 
-    subscribeWFtoRM(open, closeHandler);
+    subscribeWFtoRM(closeHandler);
 
     // Функция для установления локального стейта mainIcon в значение выбранной во всплавающем меню иконки, если выбранная иконка отлична от главной иконки
 
