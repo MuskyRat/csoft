@@ -19,6 +19,7 @@ import MainMenuWindow from "./MainMenuWindow";
 import {subscribeIFtoMM} from "../../../Interface";
 import {subscribeLMtoMM} from "../LeftMenu/LeftMenu";
 import {subscribeRMtoMM} from "../RightMenu/RightMenu";
+import {subscribeGFtoMM} from "../GraphicField/GraphicField";
 
 // Подписчик на функцию CloseHandler компоненты LeftMenu
 
@@ -148,6 +149,10 @@ const MainMenu: React.FC = React.memo(() => {
     // Подписка компоненты RightMenu на CloseHandler
 
     subscribeRMtoMM(closeHandler);
+
+    // Подписка компоненты GraphicField на функцию CloseHandler
+
+    subscribeGFtoMM(closeHandler);
 
     // Мап массива iconsArray в массив с HTML элементами
 

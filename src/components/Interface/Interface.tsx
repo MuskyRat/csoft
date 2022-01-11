@@ -27,6 +27,18 @@ export const subscribeIFtoRM = (callback: () => void) => {
 
 };
 
+// Подписчик на функцию CloseHandler компоненты MainMenu
+
+let mainMenuCloseHandlerSubscriber: (() => void) | null = null;
+
+// Функция для подписки
+
+export const subscribeIFtoMM = (callback: () => void) => {
+
+    mainMenuCloseHandlerSubscriber = callback;
+
+};
+
 // Подписчик на функцию CloseContextMenu компоненты GraphicField
 
 let graphicFieldCloseContextMenuSubscriber: (() => void) | null = null;
@@ -38,18 +50,6 @@ export const subscribeIFtoGF = (callback: () => void) => {
     graphicFieldCloseContextMenuSubscriber = callback;
 
 };
-
-// Подписчик на функцию CloseHandler компоненты MainMenu
-
-let mainMenuCloseHandlerSubscriber: (() => void) | null = null;
-
-// Функция для подписки
-
-export const subscribeIFtoMM = (callback: () => void) => {
-
-    mainMenuCloseHandlerSubscriber = callback;
-
-}
 
 const Interface: React.FC = React.memo(() => {
 

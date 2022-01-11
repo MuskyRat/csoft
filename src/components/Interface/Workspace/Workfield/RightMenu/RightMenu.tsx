@@ -13,6 +13,7 @@ import svg10 from '../../../../../assets/RightMenu/10.svg';
 import {subscribeIFtoRM} from "../../../Interface";
 import {subscribeLMtoRM} from "../LeftMenu/LeftMenu";
 import {subscribeMMtoRM} from "../MainMenu/MainMenu";
+import {subscribeGFtoRM} from "../GraphicField/GraphicField";
 
 // Подписчик на функцию CloseHandler компоненты LeftMenu
 
@@ -110,6 +111,10 @@ const RightMenu: React.FC = React.memo(() => {
     // Подписка компоненты MainMenu на функцию CloseHandler
 
     subscribeMMtoRM(closeHandler);
+
+    // Подписка компоненты RightMenu на функцию CloseHandler
+
+    subscribeGFtoRM(closeHandler);
 
     // Функция для установления локального стейта mainIcon в значение выбранной во всплавающем меню иконки, если выбранная иконка отлична от главной иконки
 

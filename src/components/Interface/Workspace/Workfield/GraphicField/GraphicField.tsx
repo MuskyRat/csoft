@@ -9,6 +9,52 @@ import hideIcon from '../../../../../assets/Graphics/ContextMenu/hide.svg'
 import showAllIcon from '../../../../../assets/Graphics/ContextMenu/show_all.svg'
 import {subscribeIFtoGF} from "../../../Interface";
 
+// Подписчик на функцию CloseHandler компоненты LeftMenu
+
+let leftMenuCloseHandlerSubscriber: (() => void) | null = null;
+
+// Функция для подписки
+
+export const subscribeGFtoLM = (callback: () => void) => {
+
+    leftMenuCloseHandlerSubscriber = callback;
+
+};
+
+// Подписчик на функцию CloseHandler компоненты RightMenu
+
+let rightMenuCloseHandlerSubscriber: (() => void) | null = null;
+
+// Функция для подписки
+
+export const subscribeGFtoRM = (callback: () => void) => {
+
+    rightMenuCloseHandlerSubscriber = callback;
+
+};
+
+// Подписчик на функцию CloseHandler компоненты MainMenu
+
+let mainMenuCloseHandlerSubscriber: (() => void) | null = null;
+
+// Функция для подписки
+
+export const subscribeGFtoMM = (callback: () => void) => {
+
+    mainMenuCloseHandlerSubscriber = callback;
+
+};
+
+// Вспомогательная функция для закрытия левого, главного и правого меню
+
+const closeAllMenus = () => {
+
+    leftMenuCloseHandlerSubscriber && leftMenuCloseHandlerSubscriber();
+    rightMenuCloseHandlerSubscriber && rightMenuCloseHandlerSubscriber();
+    mainMenuCloseHandlerSubscriber && mainMenuCloseHandlerSubscriber();
+
+};
+
 // Тип для элемента массива иконок
 
 export type IconType = {icon: string, name: string};
@@ -113,6 +159,8 @@ const GraphicField: React.FC = React.memo(() => {
 
             e.preventDefault();
 
+            closeAllMenus();
+
             showContextMenu();
 
         }
@@ -124,6 +172,8 @@ const GraphicField: React.FC = React.memo(() => {
     const rightMouseClickHandlerImg = (e: React.MouseEvent<HTMLImageElement>) => {
 
         e.preventDefault();
+
+        closeAllMenus();
 
         showContextMenu();
 

@@ -12,6 +12,7 @@ import {subscribeLAM} from "../LeftAnimatedMenu/LeftAnimatedMenu";
 import {subscribeIFtoLM} from "../../../Interface";
 import {subscribeMMtoLM} from "../MainMenu/MainMenu";
 import {subscribeRMtoLM} from "../RightMenu/RightMenu";
+import {subscribeGFtoLM} from "../GraphicField/GraphicField";
 
 // Тип для элемента массива иконок
 
@@ -132,6 +133,10 @@ const LeftMenu: React.FC = React.memo(() => {
     // Подписка компоненты RightMenu на функцию CloseHandler
 
     subscribeRMtoLM(closeHandler);
+
+    // Подписка компоненты GraphicField на функцию CloseHandler
+
+    subscribeGFtoLM(closeHandler);
 
     // Функция для установления локального стейта mainIcon в значение выбранной во всплавающем меню иконки, если выбранная иконка отлична от главной иконки
 
