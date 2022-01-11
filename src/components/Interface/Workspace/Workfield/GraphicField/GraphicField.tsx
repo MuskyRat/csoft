@@ -7,43 +7,12 @@ import unselectIcon from '../../../../../assets/Graphics/ContextMenu/unselect.sv
 import isolateIcon from '../../../../../assets/Graphics/ContextMenu/isolate.svg'
 import hideIcon from '../../../../../assets/Graphics/ContextMenu/hide.svg'
 import showAllIcon from '../../../../../assets/Graphics/ContextMenu/show_all.svg'
-import {subscribeIFtoGF} from "../../../Interface";
-
-// Подписчик на функцию CloseHandler компоненты LeftMenu
-
-let leftMenuCloseHandlerSubscriber: (() => void) | null = null;
-
-// Функция для подписки
-
-export const subscribeGFtoLM = (callback: () => void) => {
-
-    leftMenuCloseHandlerSubscriber = callback;
-
-};
-
-// Подписчик на функцию CloseHandler компоненты RightMenu
-
-let rightMenuCloseHandlerSubscriber: (() => void) | null = null;
-
-// Функция для подписки
-
-export const subscribeGFtoRM = (callback: () => void) => {
-
-    rightMenuCloseHandlerSubscriber = callback;
-
-};
-
-// Подписчик на функцию CloseHandler компоненты MainMenu
-
-let mainMenuCloseHandlerSubscriber: (() => void) | null = null;
-
-// Функция для подписки
-
-export const subscribeGFtoMM = (callback: () => void) => {
-
-    mainMenuCloseHandlerSubscriber = callback;
-
-};
+import {
+    leftMenuCloseHandlerSubscriber,
+    mainMenuCloseHandlerSubscriber,
+    rightMenuCloseHandlerSubscriber,
+    subscribeToGF
+} from "../../../../../subscribers/subscribers";
 
 // Вспомогательная функция для закрытия левого, главного и правого меню
 
@@ -117,9 +86,9 @@ const GraphicField: React.FC = React.memo(() => {
 
     };
 
-    // Подписка компоненты Interface на функцию closeContextMenu
+    // Подписка subscribers.ts на функцию closeContextMenu
 
-    subscribeIFtoGF(closeContextMenu);
+    subscribeToGF(closeContextMenu);
 
     // Функция для отображения контекстного меню в заданной точке HTML элемента с рефом
 

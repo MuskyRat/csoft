@@ -10,34 +10,11 @@ import svg7 from '../../../../../assets/RightMenu/7.svg';
 import svg8 from '../../../../../assets/RightMenu/8.svg';
 import svg9 from '../../../../../assets/RightMenu/9.svg';
 import svg10 from '../../../../../assets/RightMenu/10.svg';
-import {subscribeIFtoRM} from "../../../Interface";
-import {subscribeLMtoRM} from "../LeftMenu/LeftMenu";
-import {subscribeMMtoRM} from "../MainMenu/MainMenu";
-import {subscribeGFtoRM} from "../GraphicField/GraphicField";
-
-// Подписчик на функцию CloseHandler компоненты LeftMenu
-
-let leftMenuCloseHandlerSubscriber: (() => void) | null = null;
-
-// Функция для подписки
-
-export const subscribeRMtoLM = (callback: () => void) => {
-
-    leftMenuCloseHandlerSubscriber = callback;
-
-};
-
-// Подписчик на функцию CloseHandler компоненты MainMenu
-
-let mainMenuCloseHandlerSubscriber: (() => void) | null = null;
-
-// Функция для подписки
-
-export const subscribeRMtoMM = (callback: () => void) => {
-
-    mainMenuCloseHandlerSubscriber = callback;
-
-};
+import {
+    leftMenuCloseHandlerSubscriber,
+    mainMenuCloseHandlerSubscriber,
+    subscribeToRM
+} from "../../../../../subscribers/subscribers";
 
 // Тип для элемента массива иконок
 
@@ -100,21 +77,9 @@ const RightMenu: React.FC = React.memo(() => {
 
     };
 
-    // Подписка компоненты Interface на closeHandler
+    // Подписка subscribers.ts на функцию CloseHandler
 
-    subscribeIFtoRM(closeHandler);
-
-    // Подписка компоненты LeftMenu на CloseHandler
-
-    subscribeLMtoRM(closeHandler);
-
-    // Подписка компоненты MainMenu на функцию CloseHandler
-
-    subscribeMMtoRM(closeHandler);
-
-    // Подписка компоненты RightMenu на функцию CloseHandler
-
-    subscribeGFtoRM(closeHandler);
+    subscribeToRM(closeHandler);
 
     // Функция для установления локального стейта mainIcon в значение выбранной во всплавающем меню иконки, если выбранная иконка отлична от главной иконки
 

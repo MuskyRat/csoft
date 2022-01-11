@@ -16,34 +16,11 @@ import rocket2 from '../../../../../assets/MainMenu/MainMenuWindow/rocket.svg';
 import atom2 from '../../../../../assets/MainMenu/MainMenuWindow/atom.svg';
 import classnames from "classnames";
 import MainMenuWindow from "./MainMenuWindow";
-import {subscribeIFtoMM} from "../../../Interface";
-import {subscribeLMtoMM} from "../LeftMenu/LeftMenu";
-import {subscribeRMtoMM} from "../RightMenu/RightMenu";
-import {subscribeGFtoMM} from "../GraphicField/GraphicField";
-
-// Подписчик на функцию CloseHandler компоненты LeftMenu
-
-let leftMenuCloseHandlerSubscriber: (() => void) | null = null;
-
-// Функция для подписки
-
-export const subscribeMMtoLM = (callback: () => void) => {
-
-    leftMenuCloseHandlerSubscriber = callback;
-
-};
-
-// Подписчик на функцию CloseHandler компоненты RightMenu
-
-let rightMenuCloseHandlerSubscriber: (() => void) | null = null;
-
-// Функция для подписки
-
-export const subscribeMMtoRM = (callback: () => void) => {
-
-    rightMenuCloseHandlerSubscriber = callback;
-
-};
+import {
+    leftMenuCloseHandlerSubscriber,
+    rightMenuCloseHandlerSubscriber,
+    subscribeToMM
+} from "../../../../../subscribers/subscribers";
 
 // Тип для аргумента menu функции setOpenHandler
 
@@ -138,21 +115,9 @@ const MainMenu: React.FC = React.memo(() => {
 
     };
 
-    // Подписка компоненты Interface на closeHandler
+    // Подписка subscribers.ts на функцию CloseHandler
 
-    subscribeIFtoMM(closeHandler);
-
-    // Подписка компоненты LeftMenu на CloseHandler
-
-    subscribeLMtoMM(closeHandler);
-
-    // Подписка компоненты RightMenu на CloseHandler
-
-    subscribeRMtoMM(closeHandler);
-
-    // Подписка компоненты GraphicField на функцию CloseHandler
-
-    subscribeGFtoMM(closeHandler);
+    subscribeToMM(closeHandler);
 
     // Мап массива iconsArray в массив с HTML элементами
 

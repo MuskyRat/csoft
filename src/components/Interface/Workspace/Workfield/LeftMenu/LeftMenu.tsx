@@ -9,10 +9,11 @@ import shadedWithEdges from '../../../../../assets/LeftMenu/shaded-with-edges.sv
 import sketchy from '../../../../../assets/LeftMenu/sketchy.svg';
 import xRay from '../../../../../assets/LeftMenu/x_ray.svg';
 import {subscribeLAM} from "../LeftAnimatedMenu/LeftAnimatedMenu";
-import {subscribeIFtoLM} from "../../../Interface";
-import {subscribeMMtoLM} from "../MainMenu/MainMenu";
-import {subscribeRMtoLM} from "../RightMenu/RightMenu";
-import {subscribeGFtoLM} from "../GraphicField/GraphicField";
+import {
+    mainMenuCloseHandlerSubscriber,
+    rightMenuCloseHandlerSubscriber,
+    subscribeToLM
+} from "../../../../../subscribers/subscribers";
 
 // Тип для элемента массива иконок
 
@@ -27,30 +28,6 @@ let subscriber: null | (() => void) = null;
 export const subscribeLM = (callback: () => void) => {
 
     subscriber = callback;
-
-};
-
-// Подписчик на функцию CloseHandler компоненты MainMenu
-
-let mainMenuCloseHandlerSubscriber: (() => void) | null = null;
-
-// Функция для подписки
-
-export const subscribeLMtoMM = (callback: () => void) => {
-
-    mainMenuCloseHandlerSubscriber = callback;
-
-};
-
-// Подписчик на функцию CloseHandler компоненты RightMenu
-
-let rightMenuCloseHandlerSubscriber: (() => void) | null = null;
-
-// Функция для подписки
-
-export const subscribeLMtoRM = (callback: () => void) => {
-
-    rightMenuCloseHandlerSubscriber = callback;
 
 };
 
@@ -118,25 +95,13 @@ const LeftMenu: React.FC = React.memo(() => {
 
     };
 
-    // Подписка компоненты Interface на closeHandler
-
-    subscribeIFtoLM(closeHandler);
-
     // Подписка компоненты LeftAnimatedMenu на функцию closeHandler
 
     subscribeLAM(closeHandler);
 
-    // Подписка компоненты MainMenu на функцию CloseHandler
+    // Подписка subscribers.ts на функцию CloseHandler
 
-    subscribeMMtoLM(closeHandler);
-
-    // Подписка компоненты RightMenu на функцию CloseHandler
-
-    subscribeRMtoLM(closeHandler);
-
-    // Подписка компоненты GraphicField на функцию CloseHandler
-
-    subscribeGFtoLM(closeHandler);
+    subscribeToLM(closeHandler);
 
     // Функция для установления локального стейта mainIcon в значение выбранной во всплавающем меню иконки, если выбранная иконка отлична от главной иконки
 

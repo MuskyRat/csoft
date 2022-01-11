@@ -2,56 +2,16 @@ import React from 'react';
 import style from './Interface.module.css';
 import Header from "./Header/Header";
 import Workspace from "./Workspace/Workspace";
-
-// Подписчик на функцию CloseHandler компоненты LeftMenu
-
-let leftMenuCloseHandlerSubscriber: (() => void) | null = null;
-
-// Функция для подписки
-
-export const subscribeIFtoLM = (callback: () => void) => {
-
-    leftMenuCloseHandlerSubscriber = callback;
-
-};
-
-// Подписчик на функцию CloseHandler компоненты RightMenu
-
-let rightMenuCloseHandlerSubscriber: (() => void) | null = null;
-
-// Функция для подписки
-
-export const subscribeIFtoRM = (callback: () => void) => {
-
-    rightMenuCloseHandlerSubscriber = callback;
-
-};
-
-// Подписчик на функцию CloseHandler компоненты MainMenu
-
-let mainMenuCloseHandlerSubscriber: (() => void) | null = null;
-
-// Функция для подписки
-
-export const subscribeIFtoMM = (callback: () => void) => {
-
-    mainMenuCloseHandlerSubscriber = callback;
-
-};
-
-// Подписчик на функцию CloseContextMenu компоненты GraphicField
-
-let graphicFieldCloseContextMenuSubscriber: (() => void) | null = null;
-
-// Функция для подписки
-
-export const subscribeIFtoGF = (callback: () => void) => {
-
-    graphicFieldCloseContextMenuSubscriber = callback;
-
-};
+import {
+    graphicFieldCloseContextMenuSubscriber,
+    leftMenuCloseHandlerSubscriber,
+    mainMenuCloseHandlerSubscriber,
+    rightMenuCloseHandlerSubscriber
+} from "../../subscribers/subscribers";
 
 const Interface: React.FC = React.memo(() => {
+
+    // Обработчик события клик
 
     const clickHandler = (e: React.MouseEvent) => {
 
