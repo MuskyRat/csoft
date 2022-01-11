@@ -11,6 +11,7 @@
   left: 300px;
   top: 150px;
   width: 77%;
+  z-index: 1;
 }
 
 /*# sourceMappingURL=GraphicField.module.css.map */

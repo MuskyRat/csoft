@@ -16,6 +16,33 @@ import rocket2 from '../../../../../assets/MainMenu/MainMenuWindow/rocket.svg';
 import atom2 from '../../../../../assets/MainMenu/MainMenuWindow/atom.svg';
 import classnames from "classnames";
 import MainMenuWindow from "./MainMenuWindow";
+import {subscribeIFtoMM} from "../../../Interface";
+import {subscribeLMtoMM} from "../LeftMenu/LeftMenu";
+import {subscribeRMtoMM} from "../RightMenu/RightMenu";
+
+// Подписчик на функцию CloseHandler компоненты LeftMenu
+
+let leftMenuCloseHandlerSubscriber: (() => void) | null = null;
+
+// Функция для подписки
+
+export const subscribeMMtoLM = (callback: () => void) => {
+
+    leftMenuCloseHandlerSubscriber = callback;
+
+};
+
+// Подписчик на функцию CloseHandler компоненты RightMenu
+
+let rightMenuCloseHandlerSubscriber: (() => void) | null = null;
+
+// Функция для подписки
+
+export const subscribeMMtoRM = (callback: () => void) => {
+
+    rightMenuCloseHandlerSubscriber = callback;
+
+};
 
 // Тип для аргумента menu функции setOpenHandler
 
@@ -81,20 +108,46 @@ const MainMenu: React.FC = React.memo(() => {
 
     const clickHandler = (element: string) => (e: React.MouseEvent) => {
 
+        leftMenuCloseHandlerSubscriber && leftMenuCloseHandlerSubscriber();
+        rightMenuCloseHandlerSubscriber && rightMenuCloseHandlerSubscriber();
+
         if(element === rocket) {
 
             if(openA) setOpenHandler('A');
             setOpenHandler('R');
+            e.preventDefault();
 
         }
         if(element === atom) {
 
             if(openR) setOpenHandler('R');
             setOpenHandler('A');
+            e.preventDefault();
 
         }
 
     };
+
+    // Функция для закрытия окна меню
+
+    const closeHandler = () => {
+
+        if(openR) setOpenR(!openR);
+        if(openA) setOpenA(!openA);
+
+    };
+
+    // Подписка компоненты Interface на closeHandler
+
+    subscribeIFtoMM(closeHandler);
+
+    // Подписка компоненты LeftMenu на CloseHandler
+
+    subscribeLMtoMM(closeHandler);
+
+    // Подписка компоненты RightMenu на CloseHandler
+
+    subscribeRMtoMM(closeHandler);
 
     // Мап массива iconsArray в массив с HTML элементами
 
@@ -145,12 +198,12 @@ const MainMenu: React.FC = React.memo(() => {
 
     return (
 
-        <>
+        <div className={style.wrapperContainer}>
             <div className={style.wrapper}>
                 {iconsElements}
             </div>
             {(openA || openR) && <MainMenuWindow setOpenHandler={setOpenHandler} iconsArray={iconsArray2} openA={openA} openR={openR} />}
-        </>
+        </div>
 
     )
 

@@ -6,58 +6,22 @@ import RightMenu from "./RightMenu/RightMenu";
 import GraphicField from "./GraphicField/GraphicField";
 import LeftAnimatedMenu from "./LeftAnimatedMenu/LeftAnimatedMenu";
 
-// Подписчик на функцию CloseHandler компоненты LeftMenu
-
-let leftMenuCloseHandlerSubscriber: (() => void) | null = null;
-
-// Функция для подписки
-
-export const subscribeWFtoLM = (callback: () => void) => {
-
-    leftMenuCloseHandlerSubscriber = callback;
-
-};
-
-// Подписчик на функцию CloseHandler компоненты RightMenu
-
-let rightMenuCloseHandlerSubscriber: (() => void) | null = null;
-
-// Функция для подписки
-
-export const subscribeWFtoRM = (callback: () => void) => {
-
-    rightMenuCloseHandlerSubscriber = callback;
-
-};
-
-// Компонента рабочей области интерфейса
-
 const Workfield: React.FC = React.memo(() => {
 
-    // Обработчик события клик
+    // Обработчик события правого клика мышью
 
-    const clickHandler = (e: React.MouseEvent) => {
+    const rightMouseClickHandler = (e: React.MouseEvent) => {
 
-        if(e.defaultPrevented) {
-
-            return;
-
-        } else {
-
-            leftMenuCloseHandlerSubscriber && leftMenuCloseHandlerSubscriber();
-
-            rightMenuCloseHandlerSubscriber && rightMenuCloseHandlerSubscriber();
-
-        }
+        e.preventDefault();
 
     };
 
     return (
 
-        <div className={style.workfieldWrapper} onClick={clickHandler}>
+        <div className={style.workfieldWrapper} onContextMenu={rightMouseClickHandler}>
             <LeftMenu />
             <MainMenu />
-            <LeftAnimatedMenu />
+            {/*<LeftAnimatedMenu />*/}
             <RightMenu />
             <GraphicField />
         </div>

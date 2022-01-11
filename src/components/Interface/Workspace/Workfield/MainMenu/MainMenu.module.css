@@ -1,9 +1,15 @@
+.wrapperContainer {
+  position: relative;
+  width: fit-content;
+  top: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+}
+
 .wrapper {
   display: flex;
   border: 1px solid #BEBEBE;
-  position: absolute;
-  left: 556px;
-  top: 25px;
 }
 
 .iconContainerWrapper {

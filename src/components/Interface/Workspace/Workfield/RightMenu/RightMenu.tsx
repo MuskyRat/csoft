@@ -10,7 +10,33 @@ import svg7 from '../../../../../assets/RightMenu/7.svg';
 import svg8 from '../../../../../assets/RightMenu/8.svg';
 import svg9 from '../../../../../assets/RightMenu/9.svg';
 import svg10 from '../../../../../assets/RightMenu/10.svg';
-import {subscribeWFtoRM} from "../Workfield";
+import {subscribeIFtoRM} from "../../../Interface";
+import {subscribeLMtoRM} from "../LeftMenu/LeftMenu";
+import {subscribeMMtoRM} from "../MainMenu/MainMenu";
+
+// Подписчик на функцию CloseHandler компоненты LeftMenu
+
+let leftMenuCloseHandlerSubscriber: (() => void) | null = null;
+
+// Функция для подписки
+
+export const subscribeRMtoLM = (callback: () => void) => {
+
+    leftMenuCloseHandlerSubscriber = callback;
+
+};
+
+// Подписчик на функцию CloseHandler компоненты MainMenu
+
+let mainMenuCloseHandlerSubscriber: (() => void) | null = null;
+
+// Функция для подписки
+
+export const subscribeRMtoMM = (callback: () => void) => {
+
+    mainMenuCloseHandlerSubscriber = callback;
+
+};
 
 // Тип для элемента массива иконок
 
@@ -57,6 +83,9 @@ const RightMenu: React.FC = React.memo(() => {
 
     const clickHandler = (e: React.MouseEvent) => {
 
+        leftMenuCloseHandlerSubscriber && leftMenuCloseHandlerSubscriber();
+        mainMenuCloseHandlerSubscriber && mainMenuCloseHandlerSubscriber();
+
         setOpenHandler();
         e.preventDefault()
 
@@ -70,9 +99,17 @@ const RightMenu: React.FC = React.memo(() => {
 
     };
 
-    // Подписка компоненты Workfield на closeHandler
+    // Подписка компоненты Interface на closeHandler
 
-    subscribeWFtoRM(closeHandler);
+    subscribeIFtoRM(closeHandler);
+
+    // Подписка компоненты LeftMenu на CloseHandler
+
+    subscribeLMtoRM(closeHandler);
+
+    // Подписка компоненты MainMenu на функцию CloseHandler
+
+    subscribeMMtoRM(closeHandler);
 
     // Функция для установления локального стейта mainIcon в значение выбранной во всплавающем меню иконки, если выбранная иконка отлична от главной иконки
 

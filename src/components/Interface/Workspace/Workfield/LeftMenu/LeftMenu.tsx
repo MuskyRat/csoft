@@ -9,13 +9,15 @@ import shadedWithEdges from '../../../../../assets/LeftMenu/shaded-with-edges.sv
 import sketchy from '../../../../../assets/LeftMenu/sketchy.svg';
 import xRay from '../../../../../assets/LeftMenu/x_ray.svg';
 import {subscribeLAM} from "../LeftAnimatedMenu/LeftAnimatedMenu";
-import {subscribeWFtoLM} from "../Workfield";
+import {subscribeIFtoLM} from "../../../Interface";
+import {subscribeMMtoLM} from "../MainMenu/MainMenu";
+import {subscribeRMtoLM} from "../RightMenu/RightMenu";
 
 // Тип для элемента массива иконок
 
 type IconType = {icon: string, name: string}
 
-// Подписчик
+// Подписчик на функцию findAndCLose компоненты LeftAnimatedMenu
 
 let subscriber: null | (() => void) = null;
 
@@ -24,6 +26,30 @@ let subscriber: null | (() => void) = null;
 export const subscribeLM = (callback: () => void) => {
 
     subscriber = callback;
+
+};
+
+// Подписчик на функцию CloseHandler компоненты MainMenu
+
+let mainMenuCloseHandlerSubscriber: (() => void) | null = null;
+
+// Функция для подписки
+
+export const subscribeLMtoMM = (callback: () => void) => {
+
+    mainMenuCloseHandlerSubscriber = callback;
+
+};
+
+// Подписчик на функцию CloseHandler компоненты RightMenu
+
+let rightMenuCloseHandlerSubscriber: (() => void) | null = null;
+
+// Функция для подписки
+
+export const subscribeLMtoRM = (callback: () => void) => {
+
+    rightMenuCloseHandlerSubscriber = callback;
 
 };
 
@@ -75,6 +101,9 @@ const LeftMenu: React.FC = React.memo(() => {
 
     const clickHandler = (e: React.MouseEvent) => {
 
+        mainMenuCloseHandlerSubscriber && mainMenuCloseHandlerSubscriber();
+        rightMenuCloseHandlerSubscriber && rightMenuCloseHandlerSubscriber();
+
         setOpenHandler();
         e.preventDefault();
 
@@ -88,13 +117,21 @@ const LeftMenu: React.FC = React.memo(() => {
 
     };
 
-    // Подписка компоненты Workfield на closeHandler
+    // Подписка компоненты Interface на closeHandler
 
-    subscribeWFtoLM(closeHandler);
+    subscribeIFtoLM(closeHandler);
 
     // Подписка компоненты LeftAnimatedMenu на функцию closeHandler
 
     subscribeLAM(closeHandler);
+
+    // Подписка компоненты MainMenu на функцию CloseHandler
+
+    subscribeMMtoLM(closeHandler);
+
+    // Подписка компоненты RightMenu на функцию CloseHandler
+
+    subscribeRMtoLM(closeHandler);
 
     // Функция для установления локального стейта mainIcon в значение выбранной во всплавающем меню иконки, если выбранная иконка отлична от главной иконки
 
@@ -161,7 +198,7 @@ const LeftMenuWindow: React.FC<PropsType> = React.memo(({setOpenHandler, setMain
         <>
             <div className={style.triangle}></div>
             <div className={style.line}></div>
-            <div className={style.leftMenuWindowWrapper}>
+            <div className={style.leftMenuWindowWrapper} onBlur={setOpenHandler}>
                 {iconsElements}
             </div>
         </>

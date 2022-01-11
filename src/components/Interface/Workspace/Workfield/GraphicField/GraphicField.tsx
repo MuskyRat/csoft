@@ -7,6 +7,7 @@ import unselectIcon from '../../../../../assets/Graphics/ContextMenu/unselect.sv
 import isolateIcon from '../../../../../assets/Graphics/ContextMenu/isolate.svg'
 import hideIcon from '../../../../../assets/Graphics/ContextMenu/hide.svg'
 import showAllIcon from '../../../../../assets/Graphics/ContextMenu/show_all.svg'
+import {subscribeIFtoGF} from "../../../Interface";
 
 // Тип для элемента массива иконок
 
@@ -70,6 +71,10 @@ const GraphicField: React.FC = React.memo(() => {
 
     };
 
+    // Подписка компоненты Interface на функцию closeContextMenu
+
+    subscribeIFtoGF(closeContextMenu);
+
     // Функция для отображения контекстного меню в заданной точке HTML элемента с рефом
 
     const showContextMenu = () => {
@@ -124,18 +129,10 @@ const GraphicField: React.FC = React.memo(() => {
 
     };
 
-    // Обработчик события клик
-
-    const clickHandler = () => {
-
-        closeContextMenu();
-
-    };
-
     return (
 
         <>
-            <div className={style.wrapper} ref={anchorRef} onContextMenu={rightMouseClickHandlerDiv} onClick={clickHandler} >
+            <div className={style.wrapper} ref={anchorRef} onContextMenu={rightMouseClickHandlerDiv} >
                 <img className={style.image} src={Graphics} alt="graphics" onContextMenu={rightMouseClickHandlerImg} />
             </div>
             {open && <ContextMenu iconsArray={iconsArray} closeContextMenu={closeContextMenu} mouseX={mouseX} mouseY={mouseY} width={width} height={height} />}
